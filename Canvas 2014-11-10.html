@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="300" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var canvasWidth=300;
+var centreOfFace=canvasWidth/2;
+var topOfFace=50;
+var leftSideOfFace=canvasWidth/3;
+var rightSideOfFace=canvasWidth/3*2;
+var eyeRadius=20;
+var topOfMouth=150;
+var smileDepth=70;
+var smileDuration=500; // number of milli-seconds to wait
+
+function drawEyes(){
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.beginPath();
+	
+	// Draw the eyes
+	ctx.arc(leftSideOfFace+eyeRadius,topOfFace+eyeRadius,eyeRadius,0,2*Math.PI);
+	ctx.moveTo(rightSideOfFace, topOfFace+eyeRadius);
+	ctx.arc(rightSideOfFace-eyeRadius,topOfFace+eyeRadius,eyeRadius,0,2*Math.PI);
+	ctx.stroke();
+}
+
+function noSmile(){
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.beginPath();
+		
+	// Clear previous mouth
+	ctx.clearRect(leftSideOfFace,topOfMouth-2,100,50);
+	
+	// Draw new mouth shape
+	ctx.moveTo(leftSideOfFace, topOfMouth);
+	ctx.quadraticCurveTo(centreOfFace, topOfMouth, rightSideOfFace, topOfMouth);
+	ctx.stroke();
+	
+	setTimeout(smile,smileDuration);
+}
+
+function smile(){
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.beginPath();
+	// Clear previous mouth
+	ctx.clearRect(leftSideOfFace,topOfMouth-2,100,50);
+
+	// Draw new mouth shape
+	ctx.moveTo(leftSideOfFace, topOfMouth);
+	ctx.quadraticCurveTo(centreOfFace, topOfMouth+smileDepth, rightSideOfFace, topOfMouth);
+	ctx.stroke();
+
+	setTimeout(noSmile,smileDuration);
+}
+
+// run the script here
+drawEyes();
+noSmile();
+
+</script> 
+
+</body>
+</html>

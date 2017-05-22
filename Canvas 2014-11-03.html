@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="titleBarCanvas" width="1000" height="50">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<p> ceann eile...
+<p>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+
+<script> // Create title bar
+var titleBar = document.getElementById("titleBarCanvas");
+var titleBarContext = titleBar.getContext("2d");
+
+// Create gradient
+var titleBarGradient = titleBarContext.createLinearGradient(0,0,1000,0);
+titleBarGradient.addColorStop(0,"blue");
+titleBarGradient.addColorStop(1,"grey");
+
+// Fill with gradient
+titleBarContext.fillStyle = titleBarGradient;
+titleBarContext.fillRect(0,0,1000,50);
+
+titleBarContext.font = "20px Arial";
+titleBarContext.fillStyle = "#FFFFFF";
+titleBarContext.fillText("CoderDojo",10,40);
+</script> 
+
+<script> 
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0,0,150,75);
+ctx.moveTo(0,0);
+ctx.lineTo(200,100);
+ctx.stroke();
+ctx.beginPath();
+ctx.arc(95,50,40,0,2*Math.PI);
+ctx.stroke();
+ctx.font = "30px Arial";
+ctx.fillStyle = "#FF00FF";
+ctx.fillText("Hello World",10,50);
+
+var c2 = document.getElementById("myCanvas2");
+var ctx2 = c2.getContext("2d");
+
+// Create gradient
+var grd = ctx2.createLinearGradient(0,0,200,0);
+grd.addColorStop(0,"red");
+grd.addColorStop(1,"white");
+
+// Fill with gradient
+ctx2.fillStyle = grd;
+ctx2.fillRect(10,10,150,80);
+</script> 
+
+</body>
+</html>
